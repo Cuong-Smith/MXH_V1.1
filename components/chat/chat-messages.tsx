@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { Search, Users, ChevronRight, Plus, Hash, Send, Image as LucideImage, Paperclip, Smile, CheckCircle2, Video, AlarmClock, FileUp, BarChart2, BellOff, ThumbsUp, MoreHorizontal, Heart, Reply, Forward, Pin, Trash2, ClipboardCheck, X, Layers } from "lucide-react"
+import { Search, Users, ChevronRight, Plus, Hash, Send, Image as LucideImage, Paperclip, Smile, CheckCircle2, Video, AlarmClock, FileUp, BarChart2, BellOff, ThumbsUp, MoreHorizontal, Heart, Reply, Forward, Pin, Trash2, ClipboardCheck, X, Layers, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip"
 import { Progress } from "@/components/ui/progress"
@@ -296,6 +296,12 @@ export function ChatMessages({ onThreadClick, activeChatId = "1", isGroup = true
                             Tạo thread
                         </Button>
                     )}
+                    <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-primary">
+                        <Phone className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-primary">
+                        <Video className="h-4 w-4" />
+                    </Button>
                     <Button
                         variant="ghost" size="icon" className="h-9 w-9">
                         <Search className="h-4 w-4" />

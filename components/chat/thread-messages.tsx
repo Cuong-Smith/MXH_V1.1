@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { ArrowLeft, Send, Image as LucideImage, Paperclip, Smile, MoreHorizontal, Heart, Reply } from "lucide-react"
+import { ArrowLeft, Send, Image as LucideImage, Paperclip, Smile, MoreHorizontal, Heart, Reply, Phone, Video } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -92,7 +92,13 @@ export function ThreadMessages({ thread, onBack }: ThreadMessagesProps) {
                     </div>
                 </div>
                 <div className="flex items-center gap-2">
-                    <Avatar className="h-7 w-7 border border-white shadow-sm transition-transform hover:scale-105">
+                    <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:bg-gray-100 rounded-full transition-colors">
+                        <Phone className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:bg-gray-100 rounded-full transition-colors">
+                        <Video className="h-4 w-4" />
+                    </Button>
+                    <Avatar className="h-7 w-7 border border-white shadow-sm transition-transform hover:scale-105 ml-1">
                         <AvatarImage src="/placeholder.svg" />
                         <AvatarFallback className="bg-blue-100 text-blue-600 font-bold text-[10px]">{thread.author[0]}</AvatarFallback>
                     </Avatar>
