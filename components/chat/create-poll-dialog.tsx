@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import { X, Plus, Trash2, LayoutList } from "lucide-react"
+import { X, Plus, Trash2, LayoutList, Clock } from "lucide-react"
 import {
     Dialog,
     DialogContent,
@@ -17,12 +17,13 @@ import { Switch } from "@/components/ui/switch"
 interface CreatePollDialogProps {
     open: boolean
     onOpenChange: (open: boolean) => void
-    onCreate: (poll: { question: string; options: string[] }) => void
+    onCreate: (poll: { question: string; options: string[]; endTime?: string }) => void
 }
 
 export function CreatePollDialog({ open, onOpenChange, onCreate }: CreatePollDialogProps) {
     const [question, setQuestion] = useState("")
     const [options, setOptions] = useState(["", ""])
+    const [endTime, setEndTime] = useState("")
 
     const addOption = () => {
         setOptions([...options, ""])
@@ -41,10 +42,15 @@ export function CreatePollDialog({ open, onOpenChange, onCreate }: CreatePollDia
     }
 
     const handleCreate = () => {
-        onCreate({ question, options: options.filter(opt => opt.trim() !== "") })
+        onCreate({
+            question,
+            options: options.filter(opt => opt.trim() !== ""),
+            endTime: endTime || undefined
+        })
         onOpenChange(false)
         setQuestion("")
         setOptions(["", ""])
+        setEndTime("")
     }
 
     return (
@@ -130,6 +136,22 @@ export function CreatePollDialog({ open, onOpenChange, onCreate }: CreatePollDia
                                 <p className="text-xs text-muted-foreground">Người tham gia có thể chọn nhiều câu trả lời</p>
                             </div>
                             <Switch />
+                        </div>
+                        <div className="flex items-center justify-between">
+                            <div className="space-y-0.5 flex-1">
+                                <Label htmlFor="endTime" className="text-sm font-medium flex items-center gap-2">
+                                    <Clock className="h-4 w-4" />
+                                    Thời gian kết thúc
+                                </Label>
+                                <p className="text-xs text-muted-foreground">Thăm dò sẽ tự động đóng vào thời điểm này</p>
+                            </div>
+                            <Input
+                                id="endTime"
+                                type="datetime-local"
+                                value={endTime}
+                                onChange={(e) => setEndTime(e.target.value)}
+                                className="w-[200px] h-9 text-sm"
+                            />
                         </div>
                     </div>
                 </div>

@@ -99,7 +99,7 @@ export function ThreadMessages({ thread, onBack }: ThreadMessagesProps) {
                         <Video className="h-4 w-4" />
                     </Button>
                     <Avatar className="h-7 w-7 border border-white shadow-sm transition-transform hover:scale-105 ml-1">
-                        <AvatarImage src="/placeholder.svg" />
+                        <AvatarImage src={`https://i.pravatar.cc/150?u=${encodeURIComponent(thread.author)}`} />
                         <AvatarFallback className="bg-blue-100 text-blue-600 font-bold text-[10px]">{thread.author[0]}</AvatarFallback>
                     </Avatar>
                 </div>
@@ -114,7 +114,7 @@ export function ThreadMessages({ thread, onBack }: ThreadMessagesProps) {
                             <div className={cn("flex max-w-[70%] group relative", isSelf ? "flex-row-reverse" : "flex-row")}>
                                 {!isSelf && (
                                     <Avatar className="h-8 w-8 mt-1 shrink-0 shadow-sm">
-                                        <AvatarImage src="/placeholder.svg" />
+                                        <AvatarImage src={`https://i.pravatar.cc/150?u=${encodeURIComponent(msg.author || "User")}`} />
                                         <AvatarFallback className="bg-gray-100 text-gray-600 text-[10px] font-bold">{msg.author?.[0]}</AvatarFallback>
                                     </Avatar>
                                 )}

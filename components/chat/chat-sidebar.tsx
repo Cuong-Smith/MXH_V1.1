@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { CreateGroupDialog } from "./create-group-dialog"
 
 export const MOCK_CHATS = [
     {
@@ -15,7 +16,7 @@ export const MOCK_CHATS = [
         time: "16 phút",
         unread: 0,
         isPinned: true,
-        avatar: "/placeholder.svg",
+        avatar: "https://ui-avatars.com/api/?name=Fastdo+AI&background=0D8ABC&color=fff",
         type: "group"
     },
     {
@@ -25,7 +26,7 @@ export const MOCK_CHATS = [
         time: "10:30",
         unread: 2,
         isPinned: false,
-        avatar: "/placeholder.svg",
+        avatar: "https://ui-avatars.com/api/?name=Team+Design&background=6D28D9&color=fff",
         type: "group"
     },
     {
@@ -35,16 +36,16 @@ export const MOCK_CHATS = [
         time: "",
         unread: 0,
         isPinned: true,
-        avatar: "/placeholder.svg",
+        avatar: "https://ui-avatars.com/api/?name=AI+Tra+Cuu&background=2563EB&color=fff",
         type: "direct"
     },
     {
         id: "3",
-        name: "Phạm Thị Quỳnh ...",
+        name: "Phạm Thị Quỳnh Như",
         lastMessage: "Phạm Thị Quỳnh Như: ờ ra v",
         time: "7 ngày",
         unread: 0,
-        avatar: "/placeholder.svg",
+        avatar: "https://i.pravatar.cc/150?u=3",
         type: "direct"
     },
     {
@@ -53,7 +54,7 @@ export const MOCK_CHATS = [
         lastMessage: "",
         time: "",
         unread: 0,
-        avatar: "/placeholder.svg",
+        avatar: "https://i.pravatar.cc/150?u=4",
         type: "direct"
     },
     {
@@ -62,7 +63,7 @@ export const MOCK_CHATS = [
         lastMessage: "",
         time: "",
         unread: 0,
-        avatar: "/placeholder.svg",
+        avatar: "https://i.pravatar.cc/150?u=5",
         type: "direct"
     }
 ]
@@ -74,6 +75,7 @@ interface ChatSidebarProps {
 
 export function ChatSidebar({ selectedChatId, onSelectChat }: ChatSidebarProps) {
     const [activeTab, setActiveTab] = React.useState("all")
+    const [createGroupOpen, setCreateGroupOpen] = React.useState(false)
 
     const filteredChats = MOCK_CHATS.filter(chat => {
         if (activeTab === "all") return true
@@ -89,7 +91,7 @@ export function ChatSidebar({ selectedChatId, onSelectChat }: ChatSidebarProps) 
                         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                         <Input placeholder="Tìm kiếm..." className="pl-8 bg-muted/50 border-none h-9 text-sm" />
                     </div>
-                    <Button variant="ghost" size="icon" className="h-9 w-9">
+                    <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setCreateGroupOpen(true)}>
                         <Plus className="h-5 w-5" />
                     </Button>
                 </div>
@@ -134,6 +136,15 @@ export function ChatSidebar({ selectedChatId, onSelectChat }: ChatSidebarProps) 
                     </div>
                 ))}
             </div>
+
+            <CreateGroupDialog
+                open={createGroupOpen}
+                onOpenChange={setCreateGroupOpen}
+                onCreate={(name, members) => {
+                    console.log("Create group:", name, members)
+                    // TODO: Implement actual group creation logic
+                }}
+            />
         </div>
     )
 }
