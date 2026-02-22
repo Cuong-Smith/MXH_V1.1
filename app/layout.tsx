@@ -47,7 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" suppressHydrationWarning>
-      <body className={`font-sans antialiased`}>
+      <body className={`font-sans antialiased`} suppressHydrationWarning={true}>
         <NewsfeedProvider>
           <ResponsiveLayout>{children}</ResponsiveLayout>
         </NewsfeedProvider>
